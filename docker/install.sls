@@ -8,9 +8,17 @@ docker-repo-dependencies:
     - pkgs: {{ docker.dependencies|json }}
     - reload_modules: True
 
-docker-py:
+#
+# Replacing docker-py with docker module
+#
+docker-python-module-remove-old:
+  pip.removed:
+    - name: docker-py
+
+docker-python-module:
   pip.installed:
-    - name: docker-py>=1.4.0
+    - name: docker
+    - reload_modules: True
 
 #
 # This is the official Docker repo
